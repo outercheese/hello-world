@@ -23,7 +23,7 @@ var handleFileSelect = function(evt) {
             var decryptedText = aesjs.util.convertBytesToString(decryptedBytes);
             document.getElementById("outer64textarea").value = encryptedBytes;
             document.getElementById('opic').innerHTML ="<b>IMG</b><img src=" + decryptedText + ">";
-            console.log("OK DONES")
+            console.log("OK DONE")
 };
 
         reader.readAsDataURL(file);
