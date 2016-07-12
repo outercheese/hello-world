@@ -18,6 +18,8 @@ var handleFileSelect = function(evt) {
 				    textBytes = aesjs.util.convertStringToBytes(myInnerBase);
 						var aesCtr = new aesjs.ModeOfOperation.ctr(akey, new aesjs.Counter(5));
             var encryptedBytes = aesCtr.encrypt(textBytes);
+						
+						//begin decrypt
 						var aesCtr = new aesjs.ModeOfOperation.ctr(akey, new aesjs.Counter(5));
             var decryptedBytes = aesCtr.decrypt(encryptedBytes);
             var decryptedText = aesjs.util.convertBytesToString(decryptedBytes);
