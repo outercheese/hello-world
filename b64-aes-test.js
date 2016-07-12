@@ -27,7 +27,7 @@ var handleFileSelect = function(evt) {
             var decryptedBytes = aesCtr.decrypt(encryptedBytes);
             var decryptedText = aesjs.util.convertBytesToString(decryptedBytes);
             //document.getElementById("outer64textarea").value = encryptedBytes;
-            document.getElementById("outer64textarea").value = freader.ReadAsArrayBuffer(ablob) ;
+            document.getElementById("outer64textarea").value = freader.readAsArrayBuffer(ablob) ;
             document.getElementById('opic').innerHTML ="<b>IMG</b><img src=" + decryptedText + ">";
             console.log("OK DONE")
 };
