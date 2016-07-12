@@ -11,6 +11,9 @@ var handleFileSelect = function(evt) {
     if (files && file) {
         var reader = new FileReader();
         var freader = new FileReader();
+        freader.addEventListener("loadend", function(){
+        	
+        });
         reader.onload = function(readerEvt) {
             var binaryString = readerEvt.target.result;
             myInnerBase = reader.result;
@@ -18,12 +21,13 @@ var handleFileSelect = function(evt) {
 				    textBytes = aesjs.util.convertStringToBytes(myInnerBase);
 						var aesCtr = new aesjs.ModeOfOperation.ctr(akey, new aesjs.Counter(5));
             var encryptedBytes = aesCtr.encrypt(textBytes);
-						
+						var ablob = new Blob([encryptedBytes], {type: 'application/octet-binary'});
 						//begin decrypt
 						var aesCtr = new aesjs.ModeOfOperation.ctr(akey, new aesjs.Counter(5));
             var decryptedBytes = aesCtr.decrypt(encryptedBytes);
             var decryptedText = aesjs.util.convertBytesToString(decryptedBytes);
-            document.getElementById("outer64textarea").value = encryptedBytes;
+            //document.getElementById("outer64textarea").value = encryptedBytes;
+            document.getElementById("outer64textarea").value = freader.ReadAsArrayBuffer(ablob) ;
             document.getElementById('opic').innerHTML ="<b>IMG</b><img src=" + decryptedText + ">";
             console.log("OK DONE")
 };
