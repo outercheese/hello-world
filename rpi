@@ -39,3 +39,19 @@ Raspberrry Pi (Debian 8.0) - basics
 ----
 To figure out what version of Debian you're running:
   cat /etc/debian_version
+
+======
+5. DNS - using dnsmasq
+  A. Install dnsmasq
+    sudo apt-get install dnsmasq
+    #after this, your nameservers will live in /var/run/dnsmasq/resolv.conf 
+  B. modify /etc/dnsresolv.conf
+    ## won't forward some non-routed addresses
+    bogus-priv
+    ## won't forward requests for your intranet subdomain
+    local=/lan.mydomain.com/
+    ## append the domain (below) to all hosts in the hosts file
+    expand-hosts
+    ## appended to DHCP hosts and, if above option specified, to hosts from static IPs
+    domain=lan.mydomain.com
+  C. Add custom domains to /etc/hosts
